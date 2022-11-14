@@ -9,7 +9,6 @@ function TodoModal({ modalOpen, setModalOpen }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ title, status });
   };
 
   return (
