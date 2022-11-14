@@ -22,7 +22,7 @@ function Button({ children, type, variant, ...rest }) {
   );
 }
 
-function selectButton({ children, ...rest }) {
+function SelectButton({ children, ...rest }) {
   return (
     <select
       className={getClasses([styles.button, styles.button__select])}
@@ -33,5 +33,5 @@ function selectButton({ children, ...rest }) {
   );
 }
 
-export { selectButton };
+export { SelectButton };
 export default Button;
