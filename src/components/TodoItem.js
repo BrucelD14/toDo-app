@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/modules/todoItem.module.scss";
 import { getClasses } from "../utils/getClasses";
 import { format } from "date-fns/esm";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 function TodoItem({ todo }) {
   return (
@@ -23,7 +24,12 @@ function TodoItem({ todo }) {
         </div>
       </div>
       <div className={styles.todoActions}>
-      <div className={styles.icon}></div>
+        <div className={styles.icon}>
+          <MdDelete />
+        </div>
+        <div className={styles.icon}>
+          <MdEdit />
+        </div>
       </div>
     </div>
   );
