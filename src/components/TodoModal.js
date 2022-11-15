@@ -7,24 +7,32 @@ import { addTodo } from "../slices/todoSlice";
 import { v4 as uuid } from "uuid";
 import toast from "react-hot-toast";
 
-function TodoModal({ modalOpen, setModalOpen }) {
+function TodoModal({ type, modalOpen, setModalOpen }) {
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("incomplete");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (title === "") {
+      toast.error("Please enter a title.");
+    }
     if (title && status) {
-      dispatch(
-        addTodo({
-          id: uuid(),
-          title,
-          status,
-          time: new Date().toLocaleString(),
-        })
-      );
-      toast.success("Task Added Successfully");
-      setModalOpen(false);
+      if (type === "add") {
+        dispatch(
+          addTodo({
+            id: uuid(),
+            title,
+            status,
+            time: new Date().toLocaleString(),
+          })
+        );
+        toast.success("Task Added Successfully");
+        setModalOpen(false);
+      }
+      if (type === "update") {
+        console.log("updating task");
+      }
     } else {
       toast.error("Title shouldn't be empty");
     }
@@ -44,7 +52,9 @@ function TodoModal({ modalOpen, setModalOpen }) {
             <MdOutlineClose />
           </div>
           <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-            <h1 className={styles.formTitle}>Add TODO</h1>
+            <h1 className={styles.formTitle}>
+              {type === "update" ? "Update" : "Add"} Todo
+            </h1>
             <label htmlFor="title">
               Title
               <input
@@ -68,7 +78,7 @@ function TodoModal({ modalOpen, setModalOpen }) {
             </label>
             <div className={styles.buttonContainer}>
               <Button type="submit" variant="primary">
-                Add Task
+                {type === "update" ? "Update" : "Add"} Task
               </Button>
               <Button
                 type="button"
