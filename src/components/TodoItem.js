@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { deleteTodo } from "../slices/todoSlice";
 import toast from "react-hot-toast";
 import TodoModal from "./TodoModal";
+import Checkbutton from "./Checkbutton";
 
 function TodoItem({ todo }) {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function TodoItem({ todo }) {
     <>
       <div className={styles.item}>
         <div className={styles.todoDetails}>
-          [ ]
+        <Checkbutton />
           <div className={styles.texts}>
             <p
               className={getClasses([
