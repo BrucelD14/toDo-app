@@ -6,7 +6,13 @@ function AppContent() {
   const sortedTodoList = [...todoList];
   sortedTodoList.sort((a, b) => new Date(b.time) - new Date(a.time));
 
-  return <div>AppContent</div>;
+  return (
+    <div>
+      {sortedTodoList && sortedTodoList.length > 0
+        ? sortedTodoList.map(todo) => todo.title)
+        : "no todo found"}
+    </div>
+  );
 }
 
 export default AppContent;
