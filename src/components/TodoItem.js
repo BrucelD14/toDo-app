@@ -5,6 +5,14 @@ import { format } from "date-fns/esm";
 import { MdDelete, MdEdit } from "react-icons/md";
 
 function TodoItem({ todo }) {
+  const handleDelete = () => {
+    console.log("deleting");
+  };
+
+  const handleUpdate = () => {
+    console.log("updating");
+  };
+
   return (
     <div className={styles.item}>
       <div className={styles.todoDetails}>
@@ -24,10 +32,22 @@ function TodoItem({ todo }) {
         </div>
       </div>
       <div className={styles.todoActions}>
-        <div className={styles.icon}>
+        <div
+          className={styles.icon}
+          onClick={handleDelete}
+          onKeyDown={handleDelete}
+          role="button"
+          tabIndex={0}
+        >
           <MdDelete />
         </div>
-        <div className={styles.icon}>
+        <div
+          className={styles.icon}
+          onClick={handleUpdate}
+          onKeyDown={handleUpdate}
+          role="button"
+          tabIndex={0}
+        >
           <MdEdit />
         </div>
       </div>
