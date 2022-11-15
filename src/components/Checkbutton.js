@@ -2,9 +2,39 @@ import React from "react";
 import styles from "../styles/modules/todoItem.module.scss";
 import { motion } from "framer-motion";
 
+const checkVariants = {
+  initial: {
+    color: "#fff",
+  },
+  checked: {
+    pathLength: 1,
+  },
+  unchecked: {
+    pathLength: 0,
+  },
+};
+
+const boxVariant = {
+  checked: {
+    background: "var(--primaryPurple)",
+    transition: { duration: 0.1 },
+  },
+  unchecked: {
+    background: "var(--gray-1)",
+    transition: { duration: 0.1 },
+  },
+};
+
 function Checkbutton({ checked, setChecked }) {
   return (
-    <motion.div className={styles.svgBox}>
+    <motion.div
+      className={styles.svgBox}
+      variants={boxVariant}
+      animate={checked ? "checked" : "unchecked"}
+      onClick={() => {
+        console.log("checked clicked");
+      }}
+    >
       <motion.svg
         viewBox="0 0 53 38"
         fill="none"
@@ -12,13 +42,14 @@ function Checkbutton({ checked, setChecked }) {
         className={styles.svg}
       >
         <motion.path
+          variants={checkVariants}
           fill="none"
           strokeMiterlimit="10"
           strokeWidth="6"
           d="M1.5 22L16 36.5L51.5 1"
           strokeLinejoin="round"
           strokeLinecap="round"
-         />
+        />
       </motion.svg>
     </motion.div>
   );
