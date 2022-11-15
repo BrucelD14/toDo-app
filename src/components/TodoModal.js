@@ -16,6 +16,7 @@ function TodoModal({ type, modalOpen, setModalOpen }) {
     e.preventDefault();
     if (title === "") {
       toast.error("Please enter a title.");
+      return;
     }
     if (title && status) {
       if (type === "add") {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/modules/todoItem.module.scss";
 import { getClasses } from "../utils/getClasses";
 import { format } from "date-fns/esm";
@@ -10,6 +10,7 @@ import TodoModal from "./TodoModal";
 
 function TodoItem({ todo }) {
   const dispatch = useDispatch();
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
 
   const handleDelete = () => {
     dispatch(deleteTodo(todo.id));
@@ -17,7 +18,7 @@ function TodoItem({ todo }) {
   };
 
   const handleUpdate = () => {
-    console.log("updating");
+    setUpdateModalOpen(true);
   };
 
   return (
@@ -61,7 +62,11 @@ function TodoItem({ todo }) {
         </div>
       </div>
 
-      <TodoModal />
+      <TodoModal
+        type="update"
+        modalOpen={updateModalOpen}
+        setModalOpen={setUpdateModalOpen}
+      />
     </>
   );
 }
