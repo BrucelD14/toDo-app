@@ -5,12 +5,14 @@ import { format } from "date-fns/esm";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../slices/todoSlice";
+import toast from "react-hot-toast";
 
 function TodoItem({ todo }) {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteTodo(todo.id))
+    dispatch(deleteTodo(todo.id));
+    toast.success("Todo Deleted Successfully");
   };
 
   const handleUpdate = () => {
